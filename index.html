@@ -5,25 +5,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./css/index.css">
     <title>Music Player</title>
 </head>
 
 <body>
     <h1>Music Player</h1>
-    <!-- <canvas id="canvasProgress"></canvas> -->
-    <h1 id="current"></h1>
+
+    <canvas id="canvasProgress"></canvas>
+
+    <div class="Duration_container">
+        <h1 id="current"> 00:00 </h1>
+        <h1 id="duration"> 00:00 </h1>
+    </div>
 
     <div class="progress_div" id="progress_div">
         <div class="progress" id="progress"></div>
     </div>
 
-    <h1 id="duration"></h1>
+    <audio src="./music/Joker 2019.mp3"></audio>
 
-    <audio src="./music/Veham.mp4"></audio>
-
-    <button id="btn" onclick="play()">play</button>
-
+    <div class="btn_div">
+        <button id="next">
+            <span class="material-icons next">volume_up</span>
+        </button>
+        <button id="btn" onclick="play()"><span class="material-icons">play_arrow</span></button>
+        <button id="next">
+            <span class="material-icons next">play_arrow</span>
+            <span id="next_icon" class="material-icons next">play_arrow</span>
+        </button>
+    </div>
 
     <script src="./js/index.js"></script>
 </body>

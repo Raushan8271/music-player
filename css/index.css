@@ -1,23 +1,76 @@
 h1 {
-    color: blue;
+    color: rgb(42, 166, 214);
+    text-align: center;
+}
+
+#canvasProgress {
+    width: 90%;
+    height: 200px;
+    margin: auto 5% auto 5%;
+    border: 1px solid black;
+}
+
+.Duration_container{
+    display: flex;
+    justify-content: space-between;
 }
 
 .progress_div {
     position: relative;
     width: 100%;
-    height: 20px;
-    background-color: brown;
+    height: 10px;
+    background-color: skyblue;
     display: flex;
     align-items: center;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 3px;
+    margin-bottom: 20px;
 }
 
 .progress {
     position: absolute;
-    height: 30px;
+    height: 15px;
     /* margin: auto 10px auto 10px; */
-    background-color: blue;
+    background-color: rgb(66, 186, 233);
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 3px;
+}
+
+.btn_div{
+    width: 20%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#btn{
+    width: 100px;
+    height: 65px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 35px;
+    outline: none;
+    border: 2px solid skyblue;
+}
+
+.material-icons{
+    font-size: 48px;
+    color: rgb(66, 186, 233);
+}
+
+#next{
+    width: 80px;
+    height: 35px;
+    border-radius: 30px;
+    background-color: #fff;
+    border: 2px solid skyblue;
+    cursor: pointer;
+}
+.next{
+    font-size: 24px;
+    margin: 0;
+}
+#next_icon{
+    margin-left: -15px;
 }
