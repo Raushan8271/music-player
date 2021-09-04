@@ -15,8 +15,8 @@ function play() {
 music.addEventListener("timeupdate", (e) => {
     // console.log(e)
     let { currentTime, duration } = e.srcElement;
-    totalTime.innerHTML = `Current: ${Math.floor(duration)} Sec`;
-    current.innerHTML = `Duration: ${Math.floor(currentTime)} Sec`;
+    current.innerHTML = `Current: ${Math.floor(currentTime)} Sec`;
+    totalTime.innerHTML = `Duration: ${Math.floor(duration)} Sec`;
     let avgTime = (currentTime / duration) * 100
     progress.style.width = `${avgTime}%`
 })
