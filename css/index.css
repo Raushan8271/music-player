@@ -38,6 +38,7 @@ h1 {
 
 .btn_div{
     width: 20%;
+    min-width: 270px;
     height: auto;
     margin: auto;
     display: flex;
