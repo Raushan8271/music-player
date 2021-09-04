@@ -1,0 +1,19 @@
+h1 {
+    color: blue;
+}
+
+.progress_div {
+    width: 100%;
+    height: 70px;
+    background-color: brown;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.progress {
+    height: 50px;
+    margin: auto 10px auto 10px;
+    background-color: blue;
+    cursor: pointer;
+}
