@@ -3,17 +3,21 @@ h1 {
 }
 
 .progress_div {
+    position: relative;
     width: 100%;
-    height: 70px;
+    height: 20px;
     background-color: brown;
     display: flex;
     align-items: center;
     cursor: pointer;
+    border-radius: 8px;
 }
 
 .progress {
-    height: 50px;
-    margin: auto 10px auto 10px;
+    position: absolute;
+    height: 30px;
+    /* margin: auto 10px auto 10px; */
     background-color: blue;
     cursor: pointer;
+    border-radius: 10px;
 }
