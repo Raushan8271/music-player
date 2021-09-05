@@ -2,80 +2,115 @@ let music = document.querySelector("audio")
 let btn = document.getElementById("btn")
 let totalTime = document.getElementById("duration")
 let current = document.getElementById("current")
-let progress = document.getElementById("progress")
 let canvasProgress = document.getElementById("canvasProgress")
-let progress_div = document.getElementById("progress_div")
 
-let ctx = canvasProgress.getContext('2d')
+const ctx = canvasProgress.getContext('2d');
 
+// changing width of convas according to canvas width
 window.addEventListener('resize', windowSize);
 function windowSize() {
     canvasProgress.width = window.innerWidth - 18
-    graph()
+    canvasProgress.height = 250
 }
 windowSize()
 
-function graph() {
-    let no = Math.random() * 100
+// creating graph in canvas
+var line = []
+ctx.fillStyle = "lightgrey";
+for (let i = 0; i < window.innerWidth - 18; i += 10) {
+    let no = Math.ceil(Math.random() * 150)
     if (no < 50) {
         no = no + 50
     }
-    for (let i = 0; i < window.innerWidth - 18; i += 10) {
-        ctx.fillStyle = 'red'
-        ctx.fillRect(i, Math.random() * 100, 5, no);
-    }
-    console.log(ctx.fillStyle)
-    ctx.stroke();
+    line.push(no)
+    ctx.fillRect(i, 5, 5, no);
 }
+
+// creating tag in graph
+let musicArray = ["Music", "Audio", "Polite", "Repo", "song"]
+let musicArrayIndex = 0
+for (let i = Math.floor((window.innerWidth) / 6); i < window.innerWidth - 18; i += Math.floor((window.innerWidth) / 6)) {
+    let no = Math.ceil(Math.random() * 150)
+    if (no < 50) {
+        no = no + 50
+    }
+    ctx.arc(i + 2, 70, 7, 0, 2 * Math.PI);
+    ctx.fillStyle = 'red';
+    ctx.fill();
+    ctx.fillStyle = "blue"
+    ctx.fillRect(i, 70, 3, no);
+    ctx.fillStyle = "red"
+    ctx.fillRect(i - 20, 70 + no, 100, 25);
+    ctx.fillStyle = "black";
+    ctx.font = "20px Arial";
+    ctx.fillText(musicArray[musicArrayIndex], i, 88 + no);
+    musicArrayIndex++
+}
+
+// changing color of graph in to red
+ctx.fillStyle = "red";
+let no = 0;
+let index = 0;
+function changeGraphColor() {
+    ctx.fillRect(index, 5, 5, line[no])
+    no += 1
+    index += 10
+}
+let time;
+
+// increasing graph color according to audio play
+function check() {
+    time = setInterval(() => {
+        changeGraphColor()
+    }, (music.duration / line.length) * 1000);
+}
+
+// changing position of audio according to click on canvas position
 canvasProgress.addEventListener('click', (e) => {
-    // console.log(e)
     let { offsetX } = e
     let { clientWidth } = e.srcElement
     let avgTime = (offsetX / clientWidth) * 100
 
-    // changing color or forawrd     
-    progress.style.width = `${avgTime}%`
+    let stick = Math.ceil((line.length / 100) * avgTime)
 
-    // changing current time acording to user forward
-    music.currentTime = (music.duration / 100) * avgTime
+    if (music.currentTime) {
+        no = 0;
+        index = 0
+        for (let i = 0; i < line.length; i++) {
+            ctx.fillStyle = "lightgrey";
+            ctx.fillRect(index, 5, 5, line[no])
+            no += 1
+            index += 10
+        }
+        no = 0;
+        index = 0
+        ctx.fillStyle = "red";
+        for (let i = 0; i < stick; i++) {
+            ctx.fillRect(index, 5, 5, line[no])
+            no += 1
+            index += 10
+        }
+    }
+    if (music.currentTime) {
+        music.currentTime = (music.duration / 100) * avgTime
+    }
 })
 
 
-let isMusicPlay = false
-let song = ["./music/Veham.mp4", "./music/Joker 2019.mp3", "./music/Jee Karda.mp3"]
-let songIndex = 0
-
-// next song function
-function nextSong() {
-    // graph()
-    if (music.src == "") {
-        music.src = song[songIndex]
-        songIndex++
-    } else {
-        music.src = song[songIndex]
-        music.play()
-        isMusicPlay = true
-        isMusicPlay ? btn.innerHTML = `<span class="material-icons">pause</span>`
-            : btn.innerHTML = `<span class="material-icons">play_arrow</span>`;
-        songIndex++
-    }
-    if (songIndex == song.length) {
-        songIndex = 0
-    }
-}
-
 // play and pause function 
+let isMusicPlay = false
 function play() {
+    isMusicPlay = !isMusicPlay
     if (music.src == "") {
         music.src = song[songIndex]
         songIndex++
-        // graph()
     }
-    isMusicPlay = !isMusicPlay
     isMusicPlay ? music.play() : music.pause();
+    isMusicPlay ? check() : clearInterval(time);
     isMusicPlay ? btn.innerHTML = `<span class="material-icons">pause</span>`
         : btn.innerHTML = `<span class="material-icons">play_arrow</span>`;
 }
+
 
 music.addEventListener("timeupdate", (e) => {
     // taking current time and total duration
@@ -104,20 +139,4 @@ music.addEventListener("timeupdate", (e) => {
     if (total_time_minute) {
         totalTime.innerHTML = `${total_time_minute}:${total_time_seconds}`;
     }
-
-    // increasing width of progress bar
-    let avgTime = (currentTime / duration) * 100
-    progress.style.width = `${avgTime}%`
-})
-
-progress_div.addEventListener('click', (e) => {
-    let { offsetX } = e
-    let { clientWidth } = e.srcElement
-    let avgTime = (offsetX / clientWidth) * 100
-
-    // changing color or forawrd     
-    progress.style.width = `${avgTime}%`
-
-    // changing current time acording to user forward
-    music.currentTime = (music.duration / 100) * avgTime
 })

@@ -4,10 +4,7 @@ h1 {
 }
 
 #canvasProgress {
-    /* width: 90%;
-    height: 200px; */
-    /* margin: auto 5% auto 5%; */
-    border: 1px solid black;
+    border-bottom: 1px solid lightgray;
     cursor: pointer;
     display:block;
 }
@@ -15,30 +12,6 @@ h1 {
 .Duration_container {
     display: flex;
     justify-content: space-between;
-}
-
-.progress_div {
-    position: relative;
-    width: 100%;
-    height: 10px;
-    box-shadow: 0px 0px 4px 1px grey;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 3px;
-    margin-bottom: 20px;
-    z-index: 50;
-}
-
-.progress {
-    width: 0%;
-    position: relative;
-    height: 10px;
-    margin-top: -30px;
-    background-color: rgb(66, 186, 233);
-    cursor: pointer;
-    border-radius: 3px;
-    z-index: -1;
 }
 
 .btn_div {
