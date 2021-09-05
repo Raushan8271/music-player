@@ -6,12 +6,48 @@ let progress = document.getElementById("progress")
 let canvasProgress = document.getElementById("canvasProgress")
 let progress_div = document.getElementById("progress_div")
 
+let ctx = canvasProgress.getContext('2d')
+
+window.addEventListener('resize', windowSize);
+function windowSize() {
+    canvasProgress.width = window.innerWidth - 18
+    graph()
+}
+windowSize()
+
+function graph() {
+    let no = Math.random() * 100
+    if (no < 50) {
+        no = no + 50
+    }
+    for (let i = 0; i < window.innerWidth - 18; i += 10) {
+        ctx.fillStyle = 'red'
+        ctx.fillRect(i, Math.random() * 100, 5, no);
+    }
+    console.log(ctx.fillStyle)
+    ctx.stroke();
+}
+canvasProgress.addEventListener('click', (e) => {
+    // console.log(e)
+    let { offsetX } = e
+    let { clientWidth } = e.srcElement
+    let avgTime = (offsetX / clientWidth) * 100
+
+    // changing color or forawrd     
+    progress.style.width = `${avgTime}%`
+
+    // changing current time acording to user forward
+    music.currentTime = (music.duration / 100) * avgTime
+})
+
+
 let isMusicPlay = false
 let song = ["./music/Veham.mp4", "./music/Joker 2019.mp3", "./music/Jee Karda.mp3"]
 let songIndex = 0
 
 // next song function
 function nextSong() {
+    // graph()
     if (music.src == "") {
         music.src = song[songIndex]
         songIndex++
@@ -33,6 +69,7 @@ function play() {
     if (music.src == "") {
         music.src = song[songIndex]
         songIndex++
+        // graph()
     }
     isMusicPlay = !isMusicPlay
     isMusicPlay ? music.play() : music.pause();

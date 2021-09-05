@@ -4,10 +4,12 @@ h1 {
 }
 
 #canvasProgress {
-    width: 90%;
-    height: 200px;
-    margin: auto 5% auto 5%;
+    /* width: 90%;
+    height: 200px; */
+    /* margin: auto 5% auto 5%; */
     border: 1px solid black;
+    cursor: pointer;
+    display:block;
 }
 
 .Duration_container {
