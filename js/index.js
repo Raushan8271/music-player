@@ -7,7 +7,7 @@ let canvasProgress = document.getElementById("canvasProgress")
 let progress_div = document.getElementById("progress_div")
 
 let isMusicPlay = false
-let song = ["./music/Veham.mp4", "./music/Joker 2019.mp3", "./music/Jee Karda.mp3", "./music/O Soniye.mp3"]
+let song = ["./music/Veham.mp4", "./music/Joker 2019.mp3", "./music/Jee Karda.mp3"]
 let songIndex = 0
 
 // next song function
