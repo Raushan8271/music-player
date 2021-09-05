@@ -7,9 +7,32 @@ let canvasProgress = document.getElementById("canvasProgress")
 let progress_div = document.getElementById("progress_div")
 
 let isMusicPlay = false
+let song = ["./music/Veham.mp4", "./music/Joker 2019.mp3", "./music/Jee Karda.mp3", "./music/O Soniye.mp3"]
+let songIndex = 0
+
+// next song function
+function nextSong() {
+    if (music.src == "") {
+        music.src = song[songIndex]
+        songIndex++
+    } else {
+        music.src = song[songIndex]
+        music.play()
+        isMusicPlay ? btn.innerHTML = `<span class="material-icons">pause</span>`
+            : btn.innerHTML = `<span class="material-icons">play_arrow</span>`;
+        songIndex++
+    }
+    if (songIndex == song.length) {
+        songIndex = 0
+    }
+}
 
 // play and pause function 
 function play() {
+    if (music.src == "") {
+        music.src = song[songIndex]
+        songIndex++
+    }
     isMusicPlay = !isMusicPlay
     isMusicPlay ? music.play() : music.pause();
     isMusicPlay ? btn.innerHTML = `<span class="material-icons">pause</span>`
@@ -40,7 +63,9 @@ music.addEventListener("timeupdate", (e) => {
     if (total_time_seconds < 10) {
         total_time_seconds = `0${total_time_seconds}`
     }
-    totalTime.innerHTML = `${total_time_minute}:${total_time_seconds}`;
+    if (total_time_minute) {
+        totalTime.innerHTML = `${total_time_minute}:${total_time_seconds}`;
+    }
 
     // increasing width of progress bar
     let avgTime = (currentTime / duration) * 100
