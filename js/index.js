@@ -18,6 +18,7 @@ function nextSong() {
     } else {
         music.src = song[songIndex]
         music.play()
+        isMusicPlay = true
         isMusicPlay ? btn.innerHTML = `<span class="material-icons">pause</span>`
             : btn.innerHTML = `<span class="material-icons">play_arrow</span>`;
         songIndex++
