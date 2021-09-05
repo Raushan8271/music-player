@@ -10,7 +10,7 @@ h1 {
     border: 1px solid black;
 }
 
-.Duration_container{
+.Duration_container {
     display: flex;
     justify-content: space-between;
 }
@@ -19,33 +19,37 @@ h1 {
     position: relative;
     width: 100%;
     height: 10px;
-    background-color: skyblue;
+    box-shadow: 0px 0px 4px 1px grey;
     display: flex;
     align-items: center;
     cursor: pointer;
     border-radius: 3px;
     margin-bottom: 20px;
+    z-index: 50;
 }
 
 .progress {
-    position: absolute;
-    height: 15px;
-    /* margin: auto 10px auto 10px; */
+    width: 0%;
+    position: relative;
+    height: 10px;
+    margin-top: -30px;
     background-color: rgb(66, 186, 233);
     cursor: pointer;
     border-radius: 3px;
+    z-index: 49;
 }
 
-.btn_div{
+.btn_div {
     width: 20%;
     min-width: 270px;
     height: auto;
-    margin: auto;
+    margin: 20px auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#btn{
+
+#btn {
     width: 100px;
     height: 65px;
     cursor: pointer;
@@ -55,12 +59,12 @@ h1 {
     border: 2px solid skyblue;
 }
 
-.material-icons{
+.material-icons {
     font-size: 48px;
     color: rgb(66, 186, 233);
 }
 
-#next{
+#next {
     width: 80px;
     height: 35px;
     border-radius: 30px;
@@ -68,10 +72,12 @@ h1 {
     border: 2px solid skyblue;
     cursor: pointer;
 }
-.next{
+
+.next {
     font-size: 24px;
     margin: 0;
 }
-#next_icon{
+
+#next_icon {
     margin-left: -15px;
 }

@@ -6,7 +6,6 @@ let progress = document.getElementById("progress")
 let canvasProgress = document.getElementById("canvasProgress")
 let progress_div = document.getElementById("progress_div")
 
-
 let isMusicPlay = false
 
 // play and pause function 
@@ -51,10 +50,11 @@ music.addEventListener("timeupdate", (e) => {
 progress_div.addEventListener('click', (e) => {
     let { offsetX } = e
     let { clientWidth } = e.srcElement
-    // console.log(offsetX)
-    console.log(clientWidth)
     let avgTime = (offsetX / clientWidth) * 100
-    // console.log(avgTime)
-    // console.log(music.currentTime)
-    // music.currentTime = avgTime
+
+    // changing color or forawrd     
+    progress.style.width = `${avgTime}%`
+
+    // changing current time acording to user forward
+    music.currentTime = (music.duration / 100) * avgTime
 })
